@@ -1,0 +1,23 @@
+<div class="container flex-center header">
+  <mat-card class="header-card"
+    ><h1 class="heading">Explore Star Wars Universe</h1></mat-card
+  >
+</div>
+<div class="container grid planets-list">
+  <mat-card class="planet-card" *ngFor="let planet of planetsList">
+    <mat-card-title>{{ planet.name }}</mat-card-title>
+    <img mat-card-image src="../../../assets/img/png-planet.png" alt="Planet" />
+    <mat-card-content
+      >Terrain: {{ planet.terrain | titlecase }}</mat-card-content
+    >
+    <mat-card-content>Population: {{ planet.population }}</mat-card-content>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/planet-info"
+      [queryParams]="{ url: planet.url }"
+    >
+      Explore
+    </button>
+  </mat-card>
+</div>

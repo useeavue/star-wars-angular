@@ -1,0 +1,20 @@
+.planet {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  max-height: 400px;
+}
+
+.planet-info {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
+.planet-image {
+  display: block;
+  max-width: 400px;
+}
