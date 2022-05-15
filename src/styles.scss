@@ -28,9 +28,19 @@ body {
   justify-content: center;
   align-items: center;
 }
+.flex-center-gap-20 {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
 
 .flex-column-gap-30 {
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.pb-100 {
+  padding-bottom: 100px;
 }

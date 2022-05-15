@@ -3,7 +3,7 @@
     ><h1 class="heading">Explore Star Wars Universe</h1></mat-card
   >
 </div>
-<div class="container grid planets-list">
+<div class="container grid">
   <mat-card class="planet-card" *ngFor="let planet of planetsList">
     <mat-card-title>{{ planet.name }}</mat-card-title>
     <img mat-card-image src="../../../assets/img/png-planet.png" alt="Planet" />
@@ -20,4 +20,8 @@
       Explore
     </button>
   </mat-card>
+</div>
+<div class="navigation flex-center-gap-20 pb-100">
+  <button mat-raised-button color="primary">Previous page</button>
+  <button mat-raised-button color="primary">Next page</button>
 </div>

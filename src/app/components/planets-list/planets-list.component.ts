@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { PLANETS_API_LINK } from 'src/app/common/config';
 import { PlanetsDataService } from 'src/app/shared/planets-data.service';
 import { Planet } from 'src/app/shared/types/IPlanet';
 
@@ -17,8 +18,12 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subscription.add(this.loadPlanets(PLANETS_API_LINK));
+  }
+
+  public loadPlanets(url: string) {
     this.subscription.add(
-      this.planetsDataService.getPlanets().subscribe((res) => {
+      this.planetsDataService.getDataByUrl(url).subscribe((res) => {
         this.planetsList = res.results;
       })
     );
