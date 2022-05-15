@@ -22,6 +22,20 @@
   </mat-card>
 </div>
 <div class="navigation flex-center-gap-20 pb-100">
-  <button mat-raised-button color="primary">Previous page</button>
-  <button mat-raised-button color="primary">Next page</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!previousPage"
+    (click)="loadPlanets(previousPage)"
+  >
+    Previous page
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!nextPage"
+    (click)="loadPlanets(nextPage)"
+  >
+    Next page
+  </button>
 </div>
