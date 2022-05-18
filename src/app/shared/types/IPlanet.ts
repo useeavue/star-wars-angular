@@ -1,4 +1,4 @@
-export interface Planet {
+export interface IPlanet {
   name: string;
   rotationPeriod: string;
   orbitalPeriod: string;
@@ -9,4 +9,9 @@ export interface Planet {
   population: string;
   residents: string[];
   url: string;
+}
+
+export interface IPlanetResponse extends IPlanet {
+  rotation_period: string;
+  orbital_period: string;
 }

@@ -2,8 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PlanetsDataService } from 'src/app/shared/planets-data.service';
-import { PlanetResident } from 'src/app/shared/types/IPlanetResident';
-import { Planet } from 'src/app/shared/types/IPlanet';
+import {
+  IPlanetResidentResponse,
+  IPlanetResident,
+} from 'src/app/shared/types/IPlanetResident';
+import { IPlanetResponse, IPlanet } from 'src/app/shared/types/IPlanet';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -14,10 +17,10 @@ import { MatTableDataSource } from '@angular/material/table';
 export class PlanetInfoComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public displayedColumns: string[];
-  public residents: PlanetResident[] = [];
+  public residents: IPlanetResident[] = [];
   public showResidents = true;
-  public dataSourse: MatTableDataSource<PlanetResident>;
-  public planet: Planet;
+  public dataSourse: MatTableDataSource<IPlanetResident>;
+  public planet: IPlanet;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,7 +56,7 @@ export class PlanetInfoComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.activatedRoute.queryParams.subscribe((params: Params) => {
         this.planetsDataService
-          .getDataByUrl(params['url'])
+          .getDataByUrl<IPlanetResponse>(params['url'])
           .subscribe((value) => {
             this.planet = {
               ...value,
@@ -73,19 +76,21 @@ export class PlanetInfoComponent implements OnInit, OnDestroy {
   private getResidents(residents: string[]) {
     residents.forEach((value) => {
       this.subscription.add(
-        this.planetsDataService.getDataByUrl(value).subscribe((resident) => {
-          this.residents.push({
-            name: resident.name,
-            mass: resident.mass,
-            height: resident.height,
-            gender: resident.gender,
-            hairColor: resident.hair_color,
-            skinColor: resident.skin_color,
-            eyeColor: resident.eye_color,
-            birthYear: resident.birth_year,
-          });
-          this.dataSourse.data = this.residents;
-        })
+        this.planetsDataService
+          .getDataByUrl<IPlanetResidentResponse>(value)
+          .subscribe((resident) => {
+            this.residents.push({
+              name: resident.name,
+              mass: resident.mass,
+              height: resident.height,
+              gender: resident.gender,
+              hairColor: resident.hair_color,
+              skinColor: resident.skin_color,
+              eyeColor: resident.eye_color,
+              birthYear: resident.birth_year,
+            });
+            this.dataSourse.data = this.residents;
+          })
       );
     });
   }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class PlanetsDataService {
   constructor(private http: HttpClient) {}
 
-  public getDataByUrl(url: string): Observable<any> {
-    return this.http.get(url);
+  public getDataByUrl<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
   }
 }

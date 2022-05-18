@@ -1,4 +1,4 @@
-export interface PlanetResident {
+export interface IPlanetResident {
   birthYear: string;
   eyeColor: string;
   gender: string;
@@ -7,4 +7,11 @@ export interface PlanetResident {
   mass: string;
   name: string;
   skinColor: string;
+}
+
+export interface IPlanetResidentResponse extends IPlanetResident {
+  birth_year: string;
+  eye_color: string;
+  hair_color: string;
+  skin_color: string;
 }
